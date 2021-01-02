@@ -21,8 +21,8 @@ Route::get('register', 'Auth\RegisterController@register');
 Route::post('register', 'Auth\RegisterController@store')->name('register');
 
 // login
-Route::get('login', 'Auth\LoginController@login')->name('login');
-Route::post('login', 'Auth\LoginController@authenticate');
+Route::get('login', 'Auth\LoginController@login');
+Route::post('login', 'Auth\LoginController@authenticate')->name('login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {

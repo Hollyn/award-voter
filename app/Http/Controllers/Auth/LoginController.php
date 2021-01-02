@@ -35,7 +35,7 @@ class LoginController extends Controller
         }
 
         if (Auth::loginUsingId($user->id)) {
-            return redirect()->intended('home');
+            return redirect()->intended('/');
         }
 
         return redirect('login')->with('error', 'Oppes! You have entered invalid credentials');

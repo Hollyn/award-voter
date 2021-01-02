@@ -23,66 +23,68 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="coverBackground" style="width: 100%;height: 100%;"></div>
+<div class="features-clean" style="background: rgba(255,255,255,0);">
     <div class="container">
-        <div class="user">
-            <h6 class="user-name">{{Auth::user()->name}}</h6>
+        <div class="row">
+            <div class="col"><span class="text-capitalize">{{__(Auth::user()->name)}}</span></div>
+            <div class="col align-self-center" style="text-align: right;"><a href="{{url('logout')}}" style="color: var(--gray);">Logout</a></div>
         </div>
-        <div class="rule">
-            <h2>Rules</h2>
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis suscipit voluptatum culpa obcaecati velit hic dignissimos repellat, quibusdam excepturi dolorum saepe amet nostrum dolore cupiditate fuga ratione sint rerum provident?
-            </p>
+        <div class="col" style="text-align: center;padding-right: 15px;padding-bottom: 3px;padding-top: 3px;"><span style="font-style: normal;font-weight: normal;">Deadline :&nbsp;</span><span>2021-01-02 00:00:00</span></div>
+        <div class="text-center">
+            <h4>Rules</h4>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore nam dignissimos illum esse asperiores omnis praesentium reprehenderit culpa natus cumque quae quaerat animi vel fugit modi provident veniam, a fuga.</p>
         </div>
+
         <form action="" method="POST">
             {{ csrf_field() }}
-            @foreach ($candidateCategoryNames as $categoryName => $candidates)    
-                <div class="category ">
-                    <div class="category-title row">
-                        <h4 class="title">{{$categoryName}}</h4>
-                    </div>
-                    <div class="container-candidate row">
-                            @foreach ($candidates as $candidateName => $relationId)
-                            <div class="candidate text-center col-12 col-sm-6 col-md-4 col-lg-3 ">
-                                <label>
-                                    <input type="radio" name="{{$categoryName}}" <?php echo (in_array($relationId, $votes)) ? 'checked' : '' ?> value="{{$relationId}}" >
-                                
-                                    <img src="{{asset('assets/images/default-avatar.jpg')}}">
-                                    
-                                    <div class="candidate-name">
-                                        <span>{{$candidateName}}</span>
-                                    </div>
-                                </label>
-                            </div>
-                        @endforeach
-                      
-                    </div>
-                </div>
-            @endforeach
-            <div class="text-center submit-container">
-                <button class="btn btn-success btn-md">Vote</button>
-            </div>
-        </form>
+        @foreach ($candidateCategoryNames as $categoryName => $candidates)    
 
+            <div class="row features" style="margin-bottom: 20px;">
+                <div class="col-12">
+                    <h5 class="text-left">{{$categoryName}}</h5>
+                    <hr style="height: 0px;border: 2px solid var(--dark);margin-top: 0px;">
+                </div>
+                <?php $is_neutral = true; ?>
+                @foreach ($candidates as $candidateName => $relationId)
+                    <?php 
+                        $checked = '';
+                        if (in_array($relationId, $votes)){
+                            $checked = 'checked';
+                            $is_neutral = false;
+                        }  ?>
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-3 text-center align-self-center item" style="padding: 0px;">
+                        
+                        <label>
+                            <input type="radio" name="{{$categoryName}}" <?php echo $checked ?> value="{{$relationId}}" >
+                        
+                            <img src="{{asset('assets/images/default-avatar.jpg')}}">
+
+                            <p class="description">{{$candidateName}}</p>
+
+                        </label>
+                    </div>
+                @endforeach
+                <div class="col-6 col-sm-6 col-md-3 col-lg-3 text-center align-self-center item" style="padding: 0px;">
+                        
+                    <label>
+                        <input type="radio" name="{{$categoryName}}" <?php echo ($is_neutral) ? 'checked' : '' ?> value="neutral" >
+                    
+                        <img src="{{asset('assets/images/default-avatar.jpg')}}">
+
+                        <p class="description">{{__('Neutral')}}</p>
+
+                    </label>
+                </div>
+            </div>
+        @endforeach
+
+        <div class="text-center submit-container">
+            <button class="btn btn-success btn-md">Vote</button>
+        </div>
+        </form>
     </div>
+</div>
 @endsection
 
 
