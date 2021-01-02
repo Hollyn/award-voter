@@ -54,7 +54,7 @@
 .login h1 {
 	margin-top: 30px;
 	font-weight: bold;
-	font-size: 60px;
+	font-size: 50px;
 	letter-spacing: 3px;
 }
 
