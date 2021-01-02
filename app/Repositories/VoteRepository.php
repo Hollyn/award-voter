@@ -12,14 +12,17 @@ class VoteRepository
         return $votes;
     }
 
-    public function saveManyVotes($votes)
+    public function saveManyVotes($votes, $userId)
     {
         $toSave = [];
         foreach ($votes as $vote) {
             // $voteEntity = new Vote;
             // $voteEntity->candidate_category_id = $vote;
 
-            array_push($toSave, ['candidate_category_id' => $vote]);
+            array_push($toSave, [
+                'candidate_category_id' => $vote,
+                'user_id' => $userId
+            ]);
         }
 
         try {
@@ -27,5 +30,21 @@ class VoteRepository
         } catch (\Exception $e) {
             dd('error: db' . $e);
         }
+    }
+
+    public function deleUserVote($userId)
+    {
+        try {
+            Vote::where('user_id', $userId)->delete();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function getUserVotes($userId)
+    {
+        $votes = Vote::where('user_id', $userId)->get();
+        return ($votes) ? $votes : null;
     }
 }

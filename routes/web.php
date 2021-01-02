@@ -26,6 +26,5 @@ Route::post('login', 'Auth\LoginController@authenticate');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('home', 'PagesController@index')->name('home');
-    Route::match(['get', 'post'], '/', 'PagesController@index');
+    Route::match(['get', 'post'], '/', 'PagesController@index')->name('home');
 });

@@ -6,6 +6,8 @@ use App\Repositories\VoteRepository;
 use App\Repositories\CandidateCategoryRepository;
 use App\Common\Utils;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class PagesController extends Controller
 {
@@ -31,13 +33,21 @@ class PagesController extends Controller
             });
             $arrayOfVote = array_values($arrayOfVote);
 
-            // save vote
+            // delete the user votes
+            $this->voteRepository->deleUserVote(Auth::user()->id);
 
-            $newVotes = $this->voteRepository->saveManyVotes($arrayOfVote);
+
+            // save votes
+            $newVotes = $this->voteRepository->saveManyVotes($arrayOfVote, Auth::user()->id);
             if ($newVotes != null) {
                 return redirect('/');
             }
         }
+
+        // get the user votes
+        $votes = $this->voteRepository->getUserVotes(Auth::id());
+
+        if (count($votes) > 0) $votes = $this->utils->getIdOfAllUserVotes($votes->toArray());
 
         $candidateCategoryNames = $this->candidateCategoryRepository->getAllCandidateCategoriesName();
 
@@ -45,6 +55,9 @@ class PagesController extends Controller
             $candidateCategoryNames = $this->utils->formatCandidateCategorNames($candidateCategoryNames);
         }
 
-        return view('pages.index')->with('candidateCategoryNames', $candidateCategoryNames);
+        return view('pages.index')->with([
+            'votes' => $votes,
+            'candidateCategoryNames' => $candidateCategoryNames
+        ]);
     }
 }

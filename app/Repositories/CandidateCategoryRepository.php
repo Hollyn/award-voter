@@ -47,8 +47,7 @@ class CandidateCategoryRepository
                     INNER JOIN categories cat ON cat.id = cand_cat.category_id
                     INNER JOIN candidates cand ON cand.id = cand_cat.candidate_id
                 ORDER BY
-                    category_id ASC,
-                    nbrVote DESC;", array());
+                    category_id;", array());
 
         return $response;
     }

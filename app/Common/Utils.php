@@ -25,4 +25,13 @@ class Utils
 
         return $result;
     }
+
+    public function getIdOfAllUserVotes($votes)
+    {
+        $result = array_map(function ($vote) {
+            return $vote['candidate_category_id'];
+        }, $votes);
+
+        return ($result);
+    }
 }

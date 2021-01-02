@@ -44,7 +44,7 @@
 </div>
     <div class="container">
         <div class="user">
-            <h6 class="user-name">user name</h6>
+            <h6 class="user-name">{{Auth::user()->name}}</h6>
         </div>
         <div class="rule">
             <h2>Rules</h2>
@@ -61,10 +61,9 @@
                     </div>
                     <div class="container-candidate row">
                             @foreach ($candidates as $candidateName => $relationId)
-                            
                             <div class="candidate text-center col-12 col-sm-6 col-md-4 col-lg-3 ">
                                 <label>
-                                    <input type="radio" name="{{$categoryName}}" value="{{$relationId}}" checked>
+                                    <input type="radio" name="{{$categoryName}}" <?php echo (in_array($relationId, $votes)) ? 'checked' : '' ?> value="{{$relationId}}" >
                                 
                                     <img src="{{asset('assets/images/default-avatar.jpg')}}">
                                     
