@@ -240,7 +240,7 @@ input:checked + .slider:before {
                         <input required autofocus type="text" class="form-control" id="name" name="name" placeholder="Name">
                       </div>
                       <div class="form-group">
-                        <input required type="tel" class="form-control" id="phone" placeholder="Phone Number">
+                        <input required type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number">
                       </div>
                       <button type="submit" class="btn btn-lg btn-block ">Sign up</button>
                       <br>
