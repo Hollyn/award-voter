@@ -18,7 +18,6 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-
         User::create([
             'name' => $request->name,
             'phone' => $request->phone,

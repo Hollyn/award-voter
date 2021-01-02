@@ -30,10 +30,10 @@
             <div class="col"><span class="text-capitalize">{{__(Auth::user()->name)}}</span></div>
             <div class="col align-self-center" style="text-align: right;"><a href="{{url('logout')}}" style="color: var(--gray);">Logout</a></div>
         </div>
-        <div class="col" style="text-align: center;padding-right: 15px;padding-bottom: 3px;padding-top: 3px;"><span style="font-style: normal;font-weight: normal;">Deadline :&nbsp;</span><span>2021-01-02 00:00:00</span></div>
+        <div class="col" style="text-align: center;padding-right: 15px;padding-bottom: 3px;padding-top: 3px;"><span style="font-style: normal;font-weight: normal;">Deadline :&nbsp;</span><span>January 3rd, 2021 00:00:00</span></div>
         <div class="text-center">
             <h4>Rules</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore nam dignissimos illum esse asperiores omnis praesentium reprehenderit culpa natus cumque quae quaerat animi vel fugit modi provident veniam, a fuga.</p>
+            <p>You should give your vote before the time limit. You can always change your vote by logging in (It must be done before the deadline).</p>
         </div>
 
         <form action="" method="POST">
