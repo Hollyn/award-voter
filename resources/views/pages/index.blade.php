@@ -58,7 +58,7 @@
                         <label>
                             <input type="radio" name="{{$categoryName}}" <?php echo $checked ?> value="{{$relationId}}" >
                         
-                            <img src="{{asset('assets/images/default-avatar.jpg')}}">
+                            <img height="100" src="{{asset('assets/images/default-avatar.png')}}">
 
                             <p class="description">{{$candidateName}}</p>
 
@@ -70,7 +70,7 @@
                     <label>
                         <input type="radio" name="{{$categoryName}}" <?php echo ($is_neutral) ? 'checked' : '' ?> value="neutral" >
                     
-                        <img src="{{asset('assets/images/default-avatar.jpg')}}">
+                        <img height="100" style="opacity: .5" src="{{asset('assets/images/neutral-icon.png')}}">
 
                         <p class="description">{{__('Neutral')}}</p>
 

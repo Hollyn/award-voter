@@ -40,7 +40,7 @@ class PagesController extends Controller
             // save votes
             $newVotes = $this->voteRepository->saveManyVotes($arrayOfVote, Auth::user()->id);
             if ($newVotes != null) {
-                return redirect('/');
+                return redirect('voted');
             }
         }
 
@@ -59,5 +59,10 @@ class PagesController extends Controller
             'votes' => (array) $votes,
             'candidateCategoryNames' => $candidateCategoryNames
         ]);
+    }
+
+    public function voted()
+    {
+        return view('pages.voted');
     }
 }

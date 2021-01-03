@@ -47,4 +47,9 @@ class VoteRepository
         $votes = Vote::where('user_id', $userId)->get();
         return ($votes) ? $votes : null;
     }
+
+    public function hasUserVoted($userId)
+    {
+        return (Vote::where('user_id', $userId)->first() != null) ? true : false;
+    }
 }

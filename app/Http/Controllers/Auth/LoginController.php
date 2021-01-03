@@ -6,14 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\UserRepository;
+use App\Repositories\VoteRepository;
 
 class LoginController extends Controller
 {
     private $userRepository;
+    private $voteRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, VoteRepository $voteRepository)
     {
         $this->userRepository = $userRepository;
+        $this->voteRepository = $voteRepository;
     }
 
     public function login()
@@ -35,6 +38,8 @@ class LoginController extends Controller
         }
 
         if (Auth::loginUsingId($user->id)) {
+            // check if the user voted already
+            if ($this->voteRepository->hasUserVoted(Auth::id())) return redirect('voted');
             return redirect()->intended('/');
         }
 

@@ -27,4 +27,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::match(['get', 'post'], '/', 'PagesController@index')->name('home');
+    Route::get('/voted', 'PagesController@voted')->name('voted');
 });
