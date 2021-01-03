@@ -23,7 +23,6 @@
 
 @section('content')
 
-<div class="coverBackground" style="width: 100%;height: 100%;"></div>
 <div class="features-clean" style="background: rgba(255,255,255,0);">
     <div class="container">
         <div class="row">

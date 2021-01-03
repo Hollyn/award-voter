@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.voted')
 @push('style')
 <style>
     .bg {
