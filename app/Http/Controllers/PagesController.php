@@ -56,7 +56,7 @@ class PagesController extends Controller
         }
 
         return view('pages.index')->with([
-            'votes' => $votes,
+            'votes' => (array) $votes,
             'candidateCategoryNames' => $candidateCategoryNames
         ]);
     }
